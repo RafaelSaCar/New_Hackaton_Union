@@ -1,0 +1,113 @@
+
+
+<div class="container mt-4">
+    
+    <!-- Membro Ativo -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Membro Ativo</h5>
+        <p class="card-text"><strong>Nome:</strong> John Doe</p>
+      </div>
+    </div>
+  
+    <!-- Cadastro de Reunião -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">Cadastro de Reunião 1 a 1</h5>
+        <form (ngSubmit)="adicionarReuniao()">
+          <!-- Campo para Seleção do Segundo Membro -->
+          <div class="mb-3">
+            <label for="membro2" class="form-label">Selecione o Segundo Membro</label>
+            <select
+              id="membro2"
+              class="form-select"
+              [(ngModel)]="novaReuniao.membroId2"
+              name="membroId2"
+              required
+            >
+              <option value="" disabled selected>Escolha um membro...</option>
+              <option *ngFor="let membro of membros" [value]="membro.id">
+                {{ membro.nome }}
+              </option>
+            </select>
+          </div>
+  
+          <!-- Campo para Data e Hora -->
+          <div class="mb-3">
+            <label for="dataHora" class="form-label">Data e Hora</label>
+            <input
+              type="datetime-local"
+              id="dataHora"
+              class="form-control"
+              [(ngModel)]="novaReuniao.dataHora"
+              name="dataHora"
+              required
+            />
+          </div>
+  
+          <!-- Campo para Local -->
+          <div class="mb-3">
+            <label for="local" class="form-label">Local</label>
+            <input
+              type="text"
+              id="local"
+              class="form-control"
+              [(ngModel)]="novaReuniao.local"
+              name="local"
+              placeholder="Digite o local da reunião"
+              required
+            />
+          </div>
+  
+          <!-- Campo para Motivo -->
+          <div class="mb-3">
+            <label for="motivo" class="form-label">Motivo</label>
+            <textarea
+              id="motivo"
+              class="form-control"
+              [(ngModel)]="novaReuniao.motivo"
+              name="motivo"
+              rows="3"
+              placeholder="Descreva o motivo da reunião"
+              required
+            ></textarea>
+          </div>
+  
+          <!-- Botão de Cadastro -->
+          <button type="submit" class="btn btn-primary">Cadastrar Reunião</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Tabela de Reuniões -->
+    <div class="mt-5">
+      <h3 class="mb-3">Lista de Reuniões</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Solicitante</th>
+            <th>Participante</th>
+            <th>Data e Hora</th>
+            <th>Local</th>
+            <th>Motivo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reuniao of reunioes">
+            <td>{{ reuniao.id }}</td>
+            <td>{{ reuniao.membro1.nome }}</td>
+            <td>{{ reuniao.membro2?.nome || 'N/A' }}</td>
+            <td>{{ reuniao.dataHora }}</td>
+            <td>{{ reuniao.local }}</td>
+            <td>{{ reuniao.motivo }}</td>
+            <td>
+              <button class="btn btn-info btn-sm" (click)="detalharReuniao(reuniao)">Detalhar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

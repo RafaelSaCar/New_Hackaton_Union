@@ -1,0 +1,51 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Cadastro de OPNF</h2>
+  
+    <!-- Dados da Referência -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Dados da Referência (Fechada com Sucesso)</h5>
+        <p><strong>Nome:</strong> {{ referencia.nome }}</p>
+        <p><strong>Data de Contato:</strong> {{ referencia.dataContato }}</p>
+        <p><strong>Status:</strong> {{ referencia.status }}</p>
+        <p><strong>Telefone:</strong> {{ referencia.telefone }}</p>
+        <p><strong>Especialidade:</strong> {{ referencia.especialidade }}</p>
+        <p><strong>Observações:</strong> {{ referencia.observacoes }}</p>
+      </div>
+    </div>
+  
+    <!-- Ficha de Cadastro de OPNF -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">Ficha de Cadastro de OPNF</h5>
+        <form (ngSubmit)="cadastrarOpnf()">
+          <div class="mb-3">
+            <label for="valor" class="form-label">Valor do OPNF</label>
+            <input
+              type="text"
+              id="valor"
+              class="form-control"
+              [(ngModel)]="novaOpnf.valor"
+              name="valor"
+              placeholder="Digite o valor"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="observacoes" class="form-label">Observações</label>
+            <textarea
+              id="observacoes"
+              class="form-control"
+              [(ngModel)]="novaOpnf.observacoes"
+              name="observacoes"
+              rows="3"
+              placeholder="Digite observações sobre o OPNF"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Cadastrar OPNF</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,16 @@
+.container {
+    max-width: 800px;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .badge {
+    font-size: 0.9rem;
+  }
+  
+  .card-title {
+    font-weight: bold;
+  }
+  

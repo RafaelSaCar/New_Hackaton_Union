@@ -1,0 +1,128 @@
+<div class="container mt-4">
+    <!-- Membro Ativo -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Membro Ativo</h5>
+        <p class="card-text"><strong>Nome:</strong> John Doe</p>
+      </div>
+    </div>
+  
+    <!-- Cadastro de Referência -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">Cadastro de Referência</h5>
+        <form (ngSubmit)="cadastrarReferencia()">
+          <!-- Campo para Seleção do Membro -->
+          <div class="mb-3">
+            <label for="membro" class="form-label">Selecione o Membro</label>
+            <select
+              id="membro"
+              class="form-select"
+              [(ngModel)]="novaReferencia.membroId"
+              name="membroId"
+              required
+            >
+              <option value="" disabled selected>Escolha um membro...</option>
+              <option *ngFor="let membro of membros" [value]="membro.id">
+                {{ membro.nome }}
+              </option>
+            </select>
+          </div>
+  
+          <!-- Campo para Observações -->
+          <div class="mb-3">
+            <label for="observacoes" class="form-label">Observações</label>
+            <textarea
+              id="observacoes"
+              class="form-control"
+              [(ngModel)]="novaReferencia.observacoes"
+              name="observacoes"
+              rows="3"
+              placeholder="Digite suas observações"
+              required
+            ></textarea>
+          </div>
+  
+          <!-- Tipo de Referência -->
+          <div class="mb-3">
+            <label class="form-label">Tipo de Referência</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="interna"
+                  [(ngModel)]="novaReferencia.tipoReferencia"
+                  name="tipoReferencia"
+                  value="Interna"
+                  required
+                />
+                <label class="form-check-label" for="interna">Interna</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="externa"
+                  [(ngModel)]="novaReferencia.tipoReferencia"
+                  name="tipoReferencia"
+                  value="Externa"
+                  required
+                />
+                <label class="form-check-label" for="externa">Externa</label>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Termômetro de Avaliação -->
+          <div class="mb-3">
+            <label class="form-label">Termômetro de Avaliação</label>
+            <div class="d-flex">
+              <span
+                class="star"
+                *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+                (click)="definirAvaliacao(i + 1)"
+                [ngClass]="{ 'text-warning': novaReferencia.avaliacao > i }"
+                style="cursor: pointer; font-size: 1.5rem;"
+              >
+                ★
+              </span>
+            </div>
+          </div>
+  
+          <!-- Botão de Cadastro -->
+          <button type="submit" class="btn btn-primary">Cadastrar Referência</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Lista de Referências -->
+    <div class="mt-5">
+      <h3 class="mb-3">Lista de Referências</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Membro</th>
+            <th>Tipo</th>
+            <th>Observações</th>
+            <th>Avaliação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let referencia of referencias">
+            <td>{{ referencia.id }}</td>
+            <td>{{ referencia.membro?.nome || 'N/A' }}</td>
+            <td>{{ referencia.tipoReferencia }}</td>
+            <td>{{ referencia.observacoes }}</td>
+            <td>
+              <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                <span [ngClass]="{ 'text-warning': referencia.avaliacao > i }">★</span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Acompanhamento de Referências</h2>
+  
+    <!-- Filtro por Status -->
+    <div class="d-flex mb-4">
+      <button class="btn btn-secondary me-2" (click)="filtrarPorStatus('Não entrei em contato')">Não entrei em contato</button>
+      <button class="btn btn-info text-white me-2" (click)="filtrarPorStatus('Contatado')">Contatado</button>
+      <button class="btn btn-warning text-white me-2" (click)="filtrarPorStatus('Sem resposta de referência')">Sem resposta de referência</button>
+      <button class="btn btn-success text-white" (click)="filtrarPorStatus('Negócio fechado')">Negócio fechado</button>
+    </div>
+  
+    <!-- Tabela de Referências -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Referências Cadastradas</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Membro</th>
+              <th>Observações</th>
+              <th>Tipo</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let referencia of getReferenciasFiltradas()">
+              <td>{{ referencia.id }}</td>
+              <td>{{ referencia.membro }}</td>
+              <td>{{ referencia.observacoes }}</td>
+              <td>{{ referencia.tipo }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-secondary': referencia.status === 'Não entrei em contato',
+                    'bg-info text-white': referencia.status === 'Contatado',
+                    'bg-warning text-white': referencia.status === 'Sem resposta de referência',
+                    'bg-success': referencia.status === 'Negócio fechado'
+                  }"
+                >
+                  {{ referencia.status }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-primary btn-sm" (click)="verDetalhes(referencia)">Detalhes</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

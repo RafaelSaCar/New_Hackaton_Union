@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Cadastrar Convidado</h2>
+
+  <!-- Formulário para adicionar convidado -->
+  <form (ngSubmit)="gravarConvidado()">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          class="form-control"
+          [(ngModel)]="novoConvidado.nome"
+          name="nome"
+          required
+        />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="dataHora" class="form-label">Data e Hora</label>
+        <input
+          type="datetime-local"
+          id="dataHora"
+          class="form-control"
+          [(ngModel)]="novoConvidado.dataHora"
+          name="dataHora"
+          required
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="telefone" class="form-label">Telefone</label>
+        <input
+          type="text"
+          id="telefone"
+          class="form-control"
+          [(ngModel)]="novoConvidado.telefone"
+          name="telefone"
+        />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="especialidade" class="form-label">Especialidade</label>
+        <input
+          type="text"
+          id="especialidade"
+          class="form-control"
+          [(ngModel)]="novoConvidado.especialidade"
+          name="especialidade"
+        />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Adicionar Convidado</button>
+  </form>
+</div>
